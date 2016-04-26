@@ -12,8 +12,20 @@ android {
         versionName "1.0"
     }
     buildTypes {
-        release {
+        debug {
+            debuggable true
+            jniDebuggable true
+            zipAlignEnabled true
             minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug
+        }
+        release {
+            debuggable false
+            jniDebuggable false
+            zipAlignEnabled true
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
