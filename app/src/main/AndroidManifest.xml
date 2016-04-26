@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="host.msr.baidumapaction1">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-
     <!-- 这个权限用于进行网络定位-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
     <!-- 这个权限用于访问GPS定位-->
@@ -41,7 +39,7 @@
         <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote"/>
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="8PgQCGSIKn718osmBgYD9l5veIzAgXcp" /> //key:开发者申请的key
+            android:value="8PgQCGSIKn718osmBgYD9l5veIzAgXcp" />
     </application>
 
 </manifest>

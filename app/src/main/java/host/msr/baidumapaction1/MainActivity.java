@@ -2,6 +2,8 @@ package host.msr.baidumapaction1;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baidu.mapapi.map.BaiduMap;
@@ -28,6 +30,7 @@ public class MainActivity extends Activity {
     private PoiSearch poiSearch;
     private double latitude = 30.663791;
     private double longitude = 104.07281;
+    private TextView textView ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,17 +40,25 @@ public class MainActivity extends Activity {
     }
 
     private void initView() {
+        textView = (TextView) findViewById(R.id.nearatm);
         mapView = (MapView) findViewById(R.id.nearmap);
         mapView.showZoomControls(false);
         mBaiduMap = mapView.getMap();
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
         poiSearch = PoiSearch.newInstance();
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mBaiduMap.clear();
+                boundSearch();
+            }
+        });
         poiSearch.setOnGetPoiSearchResultListener(new OnGetPoiSearchResultListener() {
             @Override
             public void onGetPoiResult(PoiResult poiResult) {
                 //没有检索到结果
                 if (poiResult == null || poiResult.error == SearchResult.ERRORNO.RESULT_NOT_FOUND) {
-                    Toast.makeText(MainActivity.this, "这附近没有农信", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "这附近没有银行", Toast.LENGTH_LONG).show();
                 }
                 //结果正常返回
                 if (poiResult.error == SearchResult.ERRORNO.NO_ERROR) {
@@ -63,7 +74,7 @@ public class MainActivity extends Activity {
             @Override
             public void onGetPoiDetailResult(PoiDetailResult poiDetailResult) {
                 if (poiDetailResult.error != SearchResult.ERRORNO.NO_ERROR) {
-                    Toast.makeText(MainActivity.this, "附近没有农信",
+                    Toast.makeText(MainActivity.this, "附近没有银行",
                             Toast.LENGTH_SHORT).show();
                 } else {// 正常返回结果的时候，此处可以获得很多相关信息
                     Toast.makeText(
