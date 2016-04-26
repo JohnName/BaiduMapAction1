@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdate;
@@ -35,6 +36,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SDKInitializer.initialize(this);
         setContentView(R.layout.activity_main);
         initView();
     }
@@ -74,7 +76,7 @@ public class MainActivity extends Activity {
             @Override
             public void onGetPoiDetailResult(PoiDetailResult poiDetailResult) {
                 if (poiDetailResult.error != SearchResult.ERRORNO.NO_ERROR) {
-                    Toast.makeText(MainActivity.this, "附近没有银行",
+                    Toast.makeText(MainActivity.this, "银行",
                             Toast.LENGTH_SHORT).show();
                 } else {// 正常返回结果的时候，此处可以获得很多相关信息
                     Toast.makeText(
